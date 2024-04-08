@@ -99,3 +99,18 @@ Right-click on _ADMINS -> New -> User. You can give this user any name that you 
 To ensure successful domain integration for the client, the DNS server should be set to the private IP address of the domain controller. First, go to the Azure Portal and obtain the private IP address of DC-1. Next, navigate to Client-1 in the Azure Portal: Network Settings -> Network Interface -> DNS Servers -> Custom: (DC-1’s private IP address) -> Save. Return to Client-1 in the Azure Portal and click restart. Reconnect to the Client-1 VM, right-click Start -> System -> Rename this PC (Advanced) -> Change. Click on Domain, type mydomain.com, and click OK. To enable the client to join the domain, enter the domain and credentials (jane_admin), for example, mydomain.com\jane_admin. The Client-1 VM will now restart.
 </p>
 <br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/1f4f8cfd-d441-45a7-9b9b-00333fee0d3e)
+<p>
+To help keep track of which VM you are using and which user you are logged in with, you can open Command Prompt and use the the "whoami" command for user information and the "hostname" command to identify the active VM.
+</p>
+<br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/0deeab5a-c3e8-4539-b3a5-b364fa35df5e)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/2981277d-4d8b-47de-837e-a74f87f64520)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/9937612b-e847-4108-aae9-ff1de309e6c1)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/58ecf7b3-cbd2-4f34-b906-c70cea1c1bea)
+<p>
+To grant users in the domain access to the client computer, Remote Desktop must first be enabled for non-administrative users. First, reconnect to Client-1 as mydomain.com\jane_admin. Right-click Start -> System -> Remote Desktop -> User Accounts -> select "Select users who can remotely access this PC". Click on Add -> type Domain Users -> Check Names -> OK -> OK. Now, all domain users (non-administrative users) can log in to Client-1.
+</p>
+<br />
