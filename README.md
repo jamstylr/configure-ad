@@ -71,8 +71,31 @@ We will now install Active Directory on DC-1. To begin, open Server Manager on D
 </p>
 <br />
 
-
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/34a2b5b3-080a-410e-a035-09014684bb10)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/2d089568-d299-42b2-9404-32727254decf)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/e40bc1d5-38be-4f0e-9e9e-01cdcf3194dc)
 <p>
 Now that we have installed Active Directory on DC-1, we will create new Organizational Units and Users. Organizational Units function as containers resembling folders, storing user information, privileges, and login access within the directory structure. From the Server Manager dashboard, go to the Tools tab and open Active Directory Users and Computers. Right-click on “mydomain.com" -> New -> Organizational Unit. Create two new OUs; name one “_EMPLOYEES” and name the second one “_ADMINS”. Right-click on mydomain.com and click Refresh.
+</p>
+<br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/2887414c-bd89-4879-82bc-ccb729cea583)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/24c0cc0b-1517-4727-9a7d-4e40297ac309)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/151dcf28-4835-4776-890c-168414ee5da2)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/29d4f809-e229-46e7-baff-4cb5d4987731)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/8031d74f-3a64-4604-b83c-f8090830e818)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/4fe4e4b4-0073-403a-aff2-c3a4bfe77e74)
+<p>
+Right-click on _ADMINS -> New -> User. You can give this user any name that you would like, but for the purposes of this tutorial, I will create a user named Jane Doe with the logon name of jane_admin. When creating a password for this user, uncheck the box “User must change password at next logon” and check the box “Password never expires”. Next, we want to give administrative privileges to this newly created user (Jane Doe). To grant admin privileges, right-click the user and go to Properties -> Member Of -> Add. Type in Domain Admins and click Check Names -> OK -> Apply -> OK. Log off DC-1 and log back in as the new user to whom we gave admin privileges (mydomain.com\jane_admin).
+</p>
+<br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/1dda0deb-4886-49d4-82c5-45f62e1c794f)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/a6e121b9-1232-4d98-ad2b-024281330fae)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/3994054d-e7d8-45eb-8b3a-37e69e239c75)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/4eee0056-5fc9-42e8-a2da-f2137d855d7c)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/b513a606-a91c-4a51-9491-cc7b656e6c18)
+<p>
+To ensure successful domain integration for the client, the DNS server should be set to the private IP address of the domain controller. First, go to the Azure Portal and obtain the private IP address of DC-1. Next, navigate to Client-1 in the Azure Portal: Network Settings -> Network Interface -> DNS Servers -> Custom: (DC-1’s private IP address) -> Save. Return to Client-1 in the Azure Portal and click restart. Reconnect to the Client-1 VM, right-click Start -> System -> Rename this PC (Advanced) -> Change. Click on Domain, type mydomain.com, and click OK. To enable the client to join the domain, enter the domain and credentials (jane_admin), for example, mydomain.com\jane_admin. The Client-1 VM will now restart.
 </p>
 <br />
