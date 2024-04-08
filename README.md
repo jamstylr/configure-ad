@@ -114,3 +114,20 @@ To help keep track of which VM you are using and which user you are logged in wi
 To grant users in the domain access to the client computer, Remote Desktop must first be enabled for non-administrative users. First, reconnect to Client-1 as mydomain.com\jane_admin. Right-click Start -> System -> Remote Desktop -> User Accounts -> select "Select users who can remotely access this PC". Click on Add -> type Domain Users -> Check Names -> OK -> OK. Now, all domain users (non-administrative users) can log in to Client-1.
 </p>
 <br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/d42c865a-889d-4884-8633-306a273f2581)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/c98d8d03-fe84-4a27-962e-03804e8fd7ee)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/c3d1d613-2544-4ca8-812e-1e93ca3f26a5)
+<p>
+Users can be created either manually or by utilizing a script. For this tutorial, I will be using this PowerShell script: https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1. Go back to DC-1 and log in as mydomain.com\jane_admin. Open PowerShell ISE as an administrator. We'll generate accounts randomly, all with the password "Password1". Open PowerShell ISE, create a new file, and paste the PowerShell script. If you want, you can edit the number of users from 10000 to 1000 (or 100), then execute the script. These users will be generated and placed into the "_EMPLOYEES" Organizational Unit in Active Directory. Now that we've added the new users, we can proceed to configure their accounts. This includes tasks such as resetting passwords or unlocking accounts within Active Directory.
+</p>
+<br />
+
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/31421a32-682b-4663-9d20-614a9a6e7255)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/9fe05513-a02a-4d96-8de6-d3d86151e08f)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/68caa4d9-6106-45de-832c-2abc4876f899)
+![image](https://github.com/jamstylr/configure-ad/assets/159660523/2151673b-a817-4938-a9b0-abe7561ea03a)
+<p>
+After creating the users, Client-1 is prepared for login using one of the newly generated user accounts from the PowerShell script. Navigate to Active Directory Users and Computers on DC-1, choose a username randomly, and access the login details by opening Properties and then the Account tab. The generated username should be displayed as [first name].[last name]. Select a username and proceed to log in to Client-1 within the domain context, for example, mydomain.com[first name].[last name] with the password “Password1”. 
+</p>
+<br />
